@@ -6,13 +6,11 @@ import {
   ItemDescription,
   ItemContent,
 } from "@/components/ui/item"
-import { Property } from "@/entities/property/model"
 import PropertyCard from "@/entities/property/ui/property-card/property-card"
-import { ROOT_API_URL } from "@/lib/constants"
+import { fetchProperties } from "@/entities/property/api"
 
 const Home = async (): Promise<ReactNode> => {
-  const res = await fetch(ROOT_API_URL + "/properties")
-  const propertyList = (await res.json()) as Property[]
+  const propertyList = await fetchProperties()
 
   return (
     <main className="flex-1 px-4 py-8 sm:px-6 lg:px-8">
