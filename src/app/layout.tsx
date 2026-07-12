@@ -1,5 +1,5 @@
 import type { Metadata, NextPage } from "next"
-import { Geist, Geist_Mono, Inter } from "next/font/google"
+import { Geist_Mono, Inter } from "next/font/google"
 import "./globals.css"
 import { cn } from "@/lib/utils"
 import Header from "@/entities/currency/ui/header"
@@ -8,11 +8,6 @@ import { readCurrency } from "@/entities/currency/server-actions"
 import CurrencyProvider from "@/entities/currency/currency-provider"
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" })
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-})
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
@@ -33,7 +28,6 @@ const RootLayout: NextPage<PropsWithChildren> = async ({ children }) => {
       className={cn(
         "h-full",
         "antialiased",
-        geistSans.variable,
         geistMono.variable,
         "font-sans",
         inter.variable,

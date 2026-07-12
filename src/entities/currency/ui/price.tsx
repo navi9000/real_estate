@@ -1,7 +1,7 @@
 "use client"
 
 import { Currency } from "@/entities/currency/model"
-import { type FC, useDeferredValue, useMemo } from "react"
+import { type FC } from "react"
 import { useCurrencyContext } from "../use-currency-context"
 
 type Props = {
