@@ -1,5 +1,11 @@
 import type { ReactNode } from "react"
-import { Item, ItemGroup } from "@/components/ui/item"
+import {
+  Item,
+  ItemGroup,
+  ItemTitle,
+  ItemDescription,
+  ItemContent,
+} from "@/components/ui/item"
 import { Property } from "@/entities/property/model"
 import PropertyCard from "@/components/property-card/property-card"
 
@@ -13,18 +19,17 @@ const Home = async (): Promise<ReactNode> => {
         <section className="space-y-4">
           <Item
             variant="muted"
-            className="flex items-end justify-between gap-4 rounded-[1.25rem] border border-slate-200 bg-white/80 p-4 shadow-sm"
+            className="rounded-[1.25rem] border border-slate-200 bg-white/80 p-4 shadow-sm"
           >
-            <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.25em] text-slate-500">
+            <ItemContent>
+              <ItemTitle className="text-sm text-slate-500 uppercase font-semibold tracking-[0.25em]">
                 Объекты недвижимости
-              </p>
-              <h2 className="text-2xl font-semibold text-slate-900">
+              </ItemTitle>
+              <ItemDescription className="text-2xl text-slate-900 font-semibold">
                 Рекомендуемое
-              </h2>
-            </div>
+              </ItemDescription>
+            </ItemContent>
           </Item>
-
           <ItemGroup className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
             {propertyList.map((property) => (
               <PropertyCard key={property.property_name} property={property} />
