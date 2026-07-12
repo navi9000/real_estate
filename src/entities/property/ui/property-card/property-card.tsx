@@ -1,9 +1,9 @@
-import { Property } from "@/entities/property/model"
-import { FC } from "react"
-import { Item, ItemContent, ItemHeader, ItemTitle } from "../ui/item"
+import { type FC } from "react"
 import Image from "next/image"
 import { Ruler } from "lucide-react"
 import Price from "@/entities/currency/ui/price"
+import { Item, ItemContent, ItemHeader, ItemTitle } from "@/components/ui/item"
+import { type Property } from "../../model"
 
 type Props = {
   property: Property

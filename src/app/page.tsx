@@ -7,10 +7,11 @@ import {
   ItemContent,
 } from "@/components/ui/item"
 import { Property } from "@/entities/property/model"
-import PropertyCard from "@/components/property-card/property-card"
+import PropertyCard from "@/entities/property/ui/property-card/property-card"
+import { ROOT_API_URL } from "@/lib/constants"
 
 const Home = async (): Promise<ReactNode> => {
-  const res = await fetch("http://localhost:3000/api/properties")
+  const res = await fetch(ROOT_API_URL + "/properties")
   const propertyList = (await res.json()) as Property[]
 
   return (

@@ -6,6 +6,7 @@ import { saveCurrency } from "./server-actions"
 import { CurrencyContext, type CurrencyMultiplier } from "./currency-context"
 import useSWR from "swr"
 import { formatPrice } from "@/lib/utils"
+import { ROOT_API_URL } from "@/lib/constants"
 
 type Props = {
   initialValue: Currency
@@ -19,9 +20,7 @@ const CurrencyProvider: FC<PropsWithChildren<Props>> = ({
   const { data } = useSWR<CurrencyMultiplier>(
     ["currency_multiplier", currency],
     () =>
-      fetch(`http://localhost:3000/api/currencies/${currency}`).then((res) =>
-        res.json(),
-      ),
+      fetch(`${ROOT_API_URL}/currencies/${currency}`).then((res) => res.json()),
     { keepPreviousData: true },
   )
 
