@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/item"
 import { Property } from "@/entities/property/model"
 import Image from "next/image"
-import Price from "@/components/price/price"
+import Price from "@/entities/currency/ui/price"
 
 const Home: NextPage = async () => {
   const res = await fetch("http://localhost:3000/api/properties")

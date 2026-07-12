@@ -7,7 +7,7 @@ import {
   ComboboxList,
   ComboboxContent,
   ComboboxInput,
-} from "../ui/combobox"
+} from "../../../components/ui/combobox"
 import { currencyList } from "@/entities/currency/model"
 import { useCurrencyContext } from "@/entities/currency/use-currency-context"
 
