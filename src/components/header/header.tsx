@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, type FC } from "react"
+import { type FC } from "react"
 import {
   Combobox,
   ComboboxItem,
@@ -8,33 +8,19 @@ import {
   ComboboxContent,
   ComboboxInput,
 } from "../ui/combobox"
-import {
-  type Currency,
-  currencyList,
-  defaultCurrency,
-} from "@/entities/currency/model"
-import { setCurrency } from "@/entities/currency/server-actions"
+import { currencyList } from "@/entities/currency/model"
+import { useCurrencyContext } from "@/entities/currency/use-currency-context"
 
-type Props = {
-  initialCurrencyValue: Currency
-}
-
-const Header: FC<Props> = ({ initialCurrencyValue }) => {
-  const [value, setValue] = useState<Currency>(initialCurrencyValue)
-
-  const onValueChange = (value: Currency | null) => {
-    const payload = value ?? defaultCurrency
-    setValue(payload)
-    setCurrency(payload)
-  }
+const Header: FC = () => {
+  const { currency, onCurrencySelect } = useCurrencyContext()
 
   return (
     <header>
       <div className="w-[100px] ml-auto">
         <Combobox
           items={currencyList}
-          value={value}
-          onValueChange={onValueChange}
+          value={currency}
+          onValueChange={onCurrencySelect}
         >
           <ComboboxInput />
           <ComboboxContent>

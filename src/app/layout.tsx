@@ -4,7 +4,8 @@ import "./globals.css"
 import { cn } from "@/lib/utils"
 import Header from "@/components/header/header"
 import { type PropsWithChildren } from "react"
-import { getCurrency } from "@/entities/currency/server-actions"
+import { readCurrency } from "@/entities/currency/server-actions"
+import CurrencyProvider from "@/entities/currency/currency-provider"
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" })
 
@@ -24,7 +25,7 @@ export const metadata: Metadata = {
 }
 
 const RootLayout: NextPage<PropsWithChildren> = async ({ children }) => {
-  const currency = await getCurrency()
+  const currency = await readCurrency()
 
   return (
     <html
@@ -38,10 +39,12 @@ const RootLayout: NextPage<PropsWithChildren> = async ({ children }) => {
         inter.variable,
       )}
     >
-      <body className="min-h-full flex flex-col">
-        <Header initialCurrencyValue={currency} />
-        {children}
-      </body>
+      <CurrencyProvider initialValue={currency}>
+        <body className="min-h-full flex flex-col">
+          <Header />
+          {children}
+        </body>
+      </CurrencyProvider>
     </html>
   )
 }
