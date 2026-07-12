@@ -9,7 +9,7 @@ export type CurrencyMultiplier = {
 export type CurrencyContextData = {
   currency: Currency
   onCurrencySelect: (value: Currency | null) => Promise<void>
-  multiplier: CurrencyMultiplier | null
+  displayPrice: (value: number) => string
 }
 
 export const CurrencyContext = createContext<CurrencyContextData | null>(null)

@@ -3,8 +3,9 @@
 import { FC, PropsWithChildren, useState } from "react"
 import { Currency, defaultCurrency } from "./model"
 import { saveCurrency } from "./server-actions"
-import { CurrencyContext } from "./currency-context"
+import { CurrencyContext, type CurrencyMultiplier } from "./currency-context"
 import useSWR from "swr"
+import { formatPrice } from "@/lib/utils"
 
 type Props = {
   initialValue: Currency
@@ -15,7 +16,7 @@ const CurrencyProvider: FC<PropsWithChildren<Props>> = ({
   initialValue,
 }) => {
   const [currency, setCurrency] = useState<Currency>(initialValue)
-  const { data } = useSWR<{ value: number; currency: Currency }>(
+  const { data } = useSWR<CurrencyMultiplier>(
     ["currency_multiplier", currency],
     () =>
       fetch(`http://localhost:3000/api/currencies/${currency}`).then((res) =>
@@ -30,12 +31,21 @@ const CurrencyProvider: FC<PropsWithChildren<Props>> = ({
     saveCurrency(payload)
   }
 
+  const displayPrice = (priceInTBH: number) => {
+    return data
+      ? formatPrice({
+          value: priceInTBH * data.value,
+          currency: data.currency,
+        })
+      : "-"
+  }
+
   return (
     <CurrencyContext.Provider
       value={{
         currency,
         onCurrencySelect,
-        multiplier: data ?? null,
+        displayPrice,
       }}
     >
       {children}
