@@ -17,10 +17,12 @@ const formatOuput = (value: number, currency: Currency) => {
 }
 
 const Price: FC<Props> = ({ price_in_thb }) => {
-  const { currency, defaultCurrencyMultiplier } = useCurrencyContext()
+  const { multiplier } = useCurrencyContext()
 
-  const output = defaultCurrencyMultiplier
-    ? formatOuput(price_in_thb * defaultCurrencyMultiplier, currency)
+  console.log({ multiplier })
+
+  const output = multiplier
+    ? formatOuput(price_in_thb * multiplier.value, multiplier.currency)
     : "-"
   return (
     <Item

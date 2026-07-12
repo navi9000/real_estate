@@ -14,24 +14,24 @@ export async function GET(
   if (!isCurrency(code)) {
     return Response.json({ message: "Currency not found" }, { status: 404 })
   }
-  let multiplier
+  let value
   switch (code) {
     case "THB":
-      multiplier = 1
+      value = 1
       break
     case "USD":
-      multiplier = 0.0286
+      value = 0.0286
       break
     case "EUR":
-      multiplier = 0.0263
+      value = 0.0263
       break
     case "RUB":
-      multiplier = 2.57
+      value = 2.57
       break
     default:
-      multiplier = 0
+      value = 0
       exhaustiveCheck(code)
   }
 
-  return Response.json({ multiplier })
+  return Response.json({ value, currency: code })
 }

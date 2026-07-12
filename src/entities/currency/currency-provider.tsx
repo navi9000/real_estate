@@ -15,7 +15,7 @@ const CurrencyProvider: FC<PropsWithChildren<Props>> = ({
   initialValue,
 }) => {
   const [currency, setCurrency] = useState<Currency>(initialValue)
-  const { data } = useSWR<{ multiplier: number }>(
+  const { data } = useSWR<{ value: number; currency: Currency }>(
     ["currency_multiplier", currency],
     () =>
       fetch(`http://localhost:3000/api/currencies/${currency}`).then((res) =>
@@ -35,7 +35,7 @@ const CurrencyProvider: FC<PropsWithChildren<Props>> = ({
       value={{
         currency,
         onCurrencySelect,
-        defaultCurrencyMultiplier: data?.multiplier ?? null,
+        multiplier: data ?? null,
       }}
     >
       {children}
