@@ -21,7 +21,14 @@ const Price: FC<Props> = ({ price_in_thb }) => {
   const output = defaultCurrencyMultiplier
     ? formatOuput(price_in_thb * defaultCurrencyMultiplier, currency)
     : "-"
-  return <p className="font-bold text-lg/5">{output}</p>
+  return (
+    <div className="flex items-baseline justify-between gap-2">
+      <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-500">
+        Цена
+      </span>
+      <p className="text-lg font-semibold text-slate-900">{output}</p>
+    </div>
+  )
 }
 
 export default Price
