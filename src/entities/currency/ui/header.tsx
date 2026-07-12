@@ -2,6 +2,7 @@
 
 import { Building2 } from "lucide-react"
 import { type FC } from "react"
+import { Button } from "@/components/ui/button"
 import {
   Combobox,
   ComboboxItem,
@@ -19,9 +20,13 @@ const Header: FC = () => {
     <header className="border-b border-slate-200/80 bg-white/80 backdrop-blur">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
         <div className="flex items-center gap-3">
-          <div className="flex size-11 items-center justify-center rounded-2xl bg-slate-900 text-white shadow-sm">
+          <Button
+            variant="default"
+            size="icon"
+            className="size-11 rounded-2xl bg-slate-900 p-0 text-white shadow-sm hover:bg-slate-800"
+          >
             <Building2 className="size-5" />
-          </div>
+          </Button>
         </div>
         <div className="w-[140px] sm:w-[160px]">
           <Combobox
