@@ -22,6 +22,7 @@ const PropertyCard: FC<Props> = ({ property }) => {
           alt="property image"
           fill
           className="object-cover transition-transform duration-500 group-hover:scale-105"
+          sizes="320px"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-slate-900/10 to-transparent" />
       </ItemHeader>
